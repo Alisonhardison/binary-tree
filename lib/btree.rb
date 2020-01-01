@@ -6,20 +6,20 @@ attr_accessor :payload, :left, :right
     @left = left
     @right = right
   end
-
 end
 
+
   def binary_serch(target, node)
-  unless node.payload != target
-    puts "#{node.payload}"
-    return
-  end
-  unless node.left.nil?
-    binary_serch(target, node.left)
-  end
-  unless node.right.nil?
-    binary_serch(target, node.right)
-  end
+    unless node.payload != target
+      puts "#{node.payload}"
+      return
+    end
+    unless node.left.nil?
+      binary_serch(target, node.left)
+    end
+    unless node.right.nil?
+      binary_serch(target, node.right)
+    end
   end
 
   def sort(array)
@@ -49,19 +49,27 @@ end
       end
     end
   end
+
   new_array = build_array(trunk)
   print new_array
-  puts
+  puts 
+  end
+ 
+
+
+#recursion searches down the tree, only when node = nil does code continue until
+#end and returns an array with an element,
+#this kicks up into the previous recursive shell, concatenates whatever was there
+#onto the array, then continues with the next line
+  def build_array(node)
+    return [] if node.nil?
+    results = []
+    results.concat build_array(node.left)
+    results << node.payload
+    results.concat build_array(node.right)
+    results
   end
 
-  def build_array(node)
-  return [] if node.nil?
-  results = []
-  results.concat build_array(node.left)
-  results << node.payload
-  results.concat build_array(node.right)
-  results
-  end
 
 
 
